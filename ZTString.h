@@ -19,6 +19,12 @@ public:
 		ZTString();
 	}
 
+	void RemQuotes()
+	{
+		val.erase(0,1);
+		val.erase(val.size()-1,1);
+	}
+
 	ZChar* Oname()
 	{
 		return _ZC("String");

@@ -24,6 +24,4 @@ public:
 		return _ZC("Integer");
 	}
 
-
-
 };

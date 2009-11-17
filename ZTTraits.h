@@ -28,6 +28,27 @@ public:
 	typedef ZTFloat RsT;
 };
 
+template<>
+class ResultTrait<ZTBool,ZTBool>
+{
+public:
+	typedef ZTInt RsT;
+};
+
+template<class T>
+class ResultTrait<ZTBool,T>
+{
+public:
+	typedef T RsT;
+};
+
+template<class T>
+class ResultTrait<T,ZTBool>
+{
+public:
+	typedef T RsT;
+};
+
 template<class T1,class T2>
 class SumResultTrait	  : public ResultTrait<T1,T2> 
 {};

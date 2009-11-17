@@ -26,6 +26,42 @@ public:
 	{
 		return const_cast<ZChar*>(a.cont->val.c_str());
 	}
+
+	template< template <typename,typename> class T >
+	ZChar* operator()(T<ZTBool,NumOps> &a) const
+	{
+		if(a.cont->val==true)
+			return _ZC("True");
+		return _ZC("False");
+	}
+};
+
+class BoolVal : public boost::static_visitor<ZIBool>
+{
+public:
+	template<class S,class S1,template <typename,typename> class T>
+	ZIBool operator()(T<S,S1> &a) const
+	{
+		return a.cont->BoolVal();
+	}
+
+	template< template <typename,typename> class T >
+	ZIBool operator()(T<ZTString,SeqOps> &a) const
+	{
+		return (a.cont->val.length()==0)?ZBFalse:ZBTrue;
+	}
+
+	template<class S, template <typename,typename> class T >
+	ZIBool operator()(T<S,NumOps> &a) const
+	{
+		return (a.cont->val==0)?ZBFalse:ZBTrue;
+	}	
+
+	template< template <typename,typename> class T >
+	ZIBool operator()(T<ZTBool,NumOps> &a) const
+	{
+		return a.cont->val;
+	}
 };
 
 class Setter : public boost::static_visitor<void>

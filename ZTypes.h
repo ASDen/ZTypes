@@ -5,6 +5,7 @@
 #include <vector>
 #include "Zlang.h"
 #include <boost/variant.hpp>
+#include <boost/lexical_cast.hpp>
 
 //Operations types
 //
@@ -65,6 +66,7 @@ enum ZETypes
 {
 	ZETInt,
 	ZETFloat,
+	ZETBool,
 	ZETString
 };
 
@@ -74,17 +76,19 @@ enum ZETypes
 typedef ZObject<ZTRoot,AbOps> gZTR;
 typedef ZObject<ZTInt,NumOps> gZInt;
 typedef ZObject<ZTFloat,NumOps> gZFloat;
+typedef ZObject<ZTBool,NumOps> gZBool;
 typedef ZObject<ZTString,SeqOps> gZString;
 
 // our varaint 
-typedef boost::variant<gZInt,gZFloat,gZString> ZTvar;
+typedef boost::variant<gZInt,gZFloat,gZBool,gZString> ZTvar;
 typedef std::vector<ZTvar> ZTvarS;
-typedef boost::variant<ZTInt,ZTFloat> ZITvar;
+typedef ZTvar* ZTvarp;
 
 // generic member function pointer
 typedef ZTvar (ZMemFunGenClass::*ZTmfp)(ZTvarS);
 
 #include "ZTRoot.h"
+#include "ZTBool.h"
 #include "ZTInt.h"
 #include "ZTFloat.h"
 #include "ZTString.h"

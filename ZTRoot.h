@@ -14,4 +14,8 @@ public:
 		return _ZC("Generic Object");
 	}
 
+	virtual ZIBool BoolVal()
+	{
+		return ZBFalse;
+	}
 };

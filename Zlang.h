@@ -11,10 +11,12 @@ using namespace std;
 #define ZAlloc(t,sz) new t[sz];
 #define ZFree(_mem) free(_mem)
 
+#define ZBTrue true
+#define ZBFalse false
 
 //unicode stuff [Borrowd from Squirrel]
 #ifdef _UNICODE
-#define ZCUNICODE
+//#define ZCUNICODE
 #endif
 
 #ifdef ZCUNICODE
@@ -84,6 +86,9 @@ typedef char ZChar;
 //Primitive types 
 typedef int			ZIInteger; //internal integer
 typedef float		ZIFloat;
+typedef bool		ZIBool;
 typedef zcstring    ZIString;
+//
+
 //
 #endif
