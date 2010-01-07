@@ -26,7 +26,7 @@ public:
 
 	ZTvar Square(ZTvarS inp)
 	{
-		return ZTFloat(val * boost::get<gZFloat>(inp[0]).cont->val);
+		return ZTFloat(val * boost::get<gZFloat>(*(inp[0])).cont->val);
 	}
 
 };

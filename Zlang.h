@@ -5,7 +5,7 @@
 #include <sstream>
 using namespace std;
 
-//Memory related 
+//Memory related
 //TODO : fully hookable methods
 //#define ZAlloc(_size) malloc(_size)
 #define ZAlloc(t,sz) new t[sz];
@@ -83,7 +83,7 @@ typedef char ZChar;
 #endif
 #define _ZCS(a) zcstring(_ZC(a))
 //
-//Primitive types 
+//Primitive types
 typedef int			ZIInteger; //internal integer
 typedef float		ZIFloat;
 typedef bool		ZIBool;
