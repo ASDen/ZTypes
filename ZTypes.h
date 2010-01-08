@@ -15,17 +15,26 @@ class AbOps
 public:
 	AbOps(){}
 };
+//Numerical operations (numeric types , e.g. ints/floats/etc..)
 class NumOps : public AbOps
 {
 public:
 	NumOps(const AbOps & other){}
 	NumOps(){}
 };
+//sequence operations (sequencable types , e.g. strings/arrays/etc..)
 class SeqOps : public AbOps
 {
 public:
 	SeqOps(const AbOps & other){}
 	SeqOps(){}
+};
+//call operations (callable types , e.g. functions )
+class CallOps : public AbOps
+{
+public:
+	CallOps(const AbOps & other){}
+	CallOps(){}
 };
 //
 
@@ -67,14 +76,11 @@ enum ZETypes
 	ZETInt,
 	ZETFloat,
 	ZETBool,
-	ZETString
+	ZETString,
+	ZETFunction
 };
 
-enum ZFunTypes
-{
-	ZExternal,
-	ZInternal
-};
+
 
 #include "ZTDefs.h"
 
@@ -84,34 +90,16 @@ typedef ZObject<ZTInt,NumOps> gZInt;
 typedef ZObject<ZTFloat,NumOps> gZFloat;
 typedef ZObject<ZTBool,NumOps> gZBool;
 typedef ZObject<ZTString,SeqOps> gZString;
+typedef ZObject<ZTFunction,CallOps> gZFunction;
 
 // our varaint 
-typedef boost::variant<gZInt,gZFloat,gZBool,gZString> ZTvar;
+typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction> ZTvar;
 typedef ZTvar* ZTvarp;
 typedef std::vector<ZTvarp> ZTvarS;
 
 // generic member function pointer
 typedef ZTvarp (ZMemFunGenClass::*ZTmfp)(ZTvarS);
 typedef ZTvarp (*ZTfp)(ZTvarS);
-
-//generic ZFunction , either internal or external
-struct ZFunction
-{
-	ZFunTypes FunT;
-	int NumArgs;
-	union {
-		int NodeID;
-		ZTmfp pMFun;
-		ZTfp  pFun;
-	}FunData;
-
-	void pFunInit(int narg,ZTfp fp)
-	{FunT=ZExternal;NumArgs=narg;FunData.pFun=fp;}
-
-	void NodeInit(int narg,int nid)
-	{FunT=ZInternal;NumArgs=narg;FunData.NodeID=nid;}
-
-};
 
 //basic info regarding built-in modules
 struct ZBuiltinModule
@@ -125,6 +113,7 @@ struct ZBuiltinModule
 #include "ZTInt.h"
 #include "ZTFloat.h"
 #include "ZTString.h"
+#include "ZTFunction.h"
 
 #include "ZTHelpers.h"
 #include "ZErrors.h"

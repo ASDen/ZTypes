@@ -45,6 +45,13 @@ public:
 		return res;
 	}
 
+	template<class S,class V,template <typename,typename> class T>
+	ZTvar operator()(T<S,CallOps> &a1,T<V,CallOps> &a2) const
+	{
+		return a1;
+		//Fire Exception
+	}
+
 	BASE_CASE
 };
 
