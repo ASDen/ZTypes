@@ -30,26 +30,45 @@ public:
 	BASE_CASE_1
 };
 
-
+/*
+TODO
+1) Handel all sequences in genereic way
+2) when adding to string , all types are converted to Eqv toString()
+*/
 
 class Sum : public boost::static_visitor<ZTvar>
 {
 public:
 
-	template<class S,class V,class W,template <typename,typename> class T>
-	ZTvar operator()(T<S,W> &a1,T<V,W> &a2) const
+	template<class S,class V,template <typename,typename> class T>
+	ZTvar operator()(T<S,NumOps> &a1,T<V,NumOps> &a2) const
 	{
 		typedef SumResultTrait<S,V>::RsT ResulT;
-		Z_INIT_OP(S,W,V,W)
+		Z_INIT_OP(S,NumOps,V,NumOps)
 			ires->val=a1.cont->val+a2.cont->val;
 		return res;
+	}
+
+	template<class S,template <typename,typename> class T>
+	ZTvar operator()(T<S,SeqOps> &a1,T<S,SeqOps> &a2) const
+	{
+		typedef SumResultTrait<S,S>::RsT ResulT;
+		Z_INIT_OP(S,SeqOps,V,SeqOps)
+			ires->val=a1.cont->val+a2.cont->val;
+		return res;
+	}
+
+	template< template <typename,typename> class T>
+	ZTvar operator()(T<ZTList,SeqOps> &a1,T<ZTList,SeqOps> &a2) const
+	{
+		return a1;
 	}
 
 	template<class S,class V,template <typename,typename> class T>
 	ZTvar operator()(T<S,CallOps> &a1,T<V,CallOps> &a2) const
 	{
 		return a1;
-		//Fire Exception
+		/* Fire Exception */
 	}
 
 	BASE_CASE
@@ -146,8 +165,8 @@ namespace Boolean
 	{
 	public:
 
-		template<class S,class V,class W,template <typename,typename> class T>
-		ZTvar operator()(T<S,W> &a1,T<V,W> &a2) const
+		template<class S,class V,template <typename,typename> class T>
+		ZTvar operator()(T<S,NumOps> &a1,T<V,NumOps> &a2) const
 		{
 			return ZTBool(a1.cont->val < a2.cont->val);
 		}
@@ -159,8 +178,8 @@ namespace Boolean
 	{
 	public:
 
-		template<class S,class V,class W,template <typename,typename> class T>
-		ZTvar operator()(T<S,W> &a1,T<V,W> &a2) const
+		template<class S,class V,template <typename,typename> class T>
+		ZTvar operator()(T<S,NumOps> &a1,T<V,NumOps> &a2) const
 		{
 			return ZTBool(a1.cont->val > a2.cont->val);
 		}

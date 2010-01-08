@@ -77,7 +77,8 @@ enum ZETypes
 	ZETFloat,
 	ZETBool,
 	ZETString,
-	ZETFunction
+	ZETFunction,
+	ZETList
 };
 
 
@@ -91,9 +92,10 @@ typedef ZObject<ZTFloat,NumOps> gZFloat;
 typedef ZObject<ZTBool,NumOps> gZBool;
 typedef ZObject<ZTString,SeqOps> gZString;
 typedef ZObject<ZTFunction,CallOps> gZFunction;
+typedef ZObject<ZTList,SeqOps> gZList;
 
 // our varaint 
-typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction> ZTvar;
+typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction,gZList> ZTvar;
 typedef ZTvar* ZTvarp;
 typedef std::vector<ZTvarp> ZTvarS;
 
@@ -114,6 +116,7 @@ struct ZBuiltinModule
 #include "ZTFloat.h"
 #include "ZTString.h"
 #include "ZTFunction.h"
+#include "ZTList.h"
 
 #include "ZTHelpers.h"
 #include "ZErrors.h"

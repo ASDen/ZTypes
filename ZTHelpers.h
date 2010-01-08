@@ -28,6 +28,28 @@ public:
 	}
 
 	template< template <typename,typename> class T >
+	ZChar* operator()(T<ZTList,SeqOps> &a) const
+	{
+		ZIString zs;
+		zs.append(_ZC("["));
+		ZTvarS::iterator i;
+		if(a.cont->val.size()>0)
+		{
+		for ( i = a.cont->val.begin(); i != a.cont->val.end()-1 ; i++ )
+		{
+			zs.append(boost::apply_visitor(ToString(),**i));
+			zs.append(_ZC(","));
+		}
+		zs.append(boost::apply_visitor(ToString(),**i));
+		}
+		zs.append(_ZC("]"));
+
+		ZChar* zt=ZAlloc(ZChar,zs.length());
+		zcstrcpy(zt,zs.c_str());
+		return zt;
+	}
+
+	template< template <typename,typename> class T >
 	ZChar* operator()(T<ZTBool,NumOps> &a) const
 	{
 		if(a.cont->val==true)

@@ -4,3 +4,4 @@ class ZTInt;
 class ZTFloat;
 class ZTString;
 class ZTFunction;
+class ZTList;
