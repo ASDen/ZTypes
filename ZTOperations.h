@@ -54,15 +54,15 @@ public:
 	{
 		typedef SumResultTrait<S,S>::RsT ResulT;
 		Z_INIT_OP(S,SeqOps,V,SeqOps)
-			ires->val=a1.cont->val+a2.cont->val;
+			ires->val=(*a1.cont+*a2.cont).val;
 		return res;
 	}
 
-	template< template <typename,typename> class T>
+	/*template< template <typename,typename> class T>
 	ZTvar operator()(T<ZTList,SeqOps> &a1,T<ZTList,SeqOps> &a2) const
 	{
 		return a1;
-	}
+	}*/
 
 	template<class S,class V,template <typename,typename> class T>
 	ZTvar operator()(T<S,CallOps> &a1,T<V,CallOps> &a2) const

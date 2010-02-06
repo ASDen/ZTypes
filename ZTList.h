@@ -29,6 +29,18 @@ public:
 		val.push_back(var);
 	}
 
+	void Concat(ZTvarS list)
+	{
+		val.insert(val.end(), list.begin(), list.end());
+	}
+
+	const ZTList operator+(const ZTList &other) const
+	{
+		ZTList res=*this;
+		res.Concat(other.val);
+		return res;
+	}
+
 	ZTvarp Get(int Index)
 	{
 		return val[Index];

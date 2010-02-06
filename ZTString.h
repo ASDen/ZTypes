@@ -19,6 +19,11 @@ public:
 		ZTString();
 	}
 
+	const ZTString operator+(const ZTString &other) const
+	{
+		return (*this).val+other.val;
+	}
+
 	void RemQuotes()
 	{
 		val.erase(0,1);
