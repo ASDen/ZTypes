@@ -35,12 +35,12 @@ public:
 		ZTvarS::iterator i;
 		if(a.cont->val.size()>0)
 		{
-		for ( i = a.cont->val.begin(); i != a.cont->val.end()-1 ; i++ )
-		{
+			for ( i = a.cont->val.begin(); i != a.cont->val.end()-1 ; i++ )
+			{
+				zs.append(boost::apply_visitor(ToString(),**i));
+				zs.append(_ZC(","));
+			}
 			zs.append(boost::apply_visitor(ToString(),**i));
-			zs.append(_ZC(","));
-		}
-		zs.append(boost::apply_visitor(ToString(),**i));
 		}
 		zs.append(_ZC("]"));
 
