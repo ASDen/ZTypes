@@ -8,6 +8,16 @@ public:
 	}
 };
 
+class getType : public boost::static_visitor<ZETypes>
+{
+public:
+	template<class S,class S1,template <typename,typename> class T>
+	ZETypes operator()(T<S,S1> &a) const
+	{
+		return a.cont->myType;
+	}
+};
+
 class ToString : public boost::static_visitor<ZChar*>
 {
 public:

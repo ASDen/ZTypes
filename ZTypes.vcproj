@@ -227,6 +227,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ZTMemData.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ZTObject.h"
+				>
+			</File>
+			<File
 				RelativePath=".\ZTOperations.h"
 				>
 			</File>

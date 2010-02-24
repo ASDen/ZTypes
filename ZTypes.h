@@ -78,12 +78,16 @@ enum ZETypes
 	ZETBool,
 	ZETString,
 	ZETFunction,
-	ZETList
+	ZETList,
+	ZETObject,
+	ZETInstance,
+	ZETMemDataItem
 };
 
 
 
 #include "ZTDefs.h"
+
 
 // Type shorthands
 typedef ZObject<ZTRoot,AbOps> gZTR;
@@ -93,9 +97,12 @@ typedef ZObject<ZTBool,NumOps> gZBool;
 typedef ZObject<ZTString,SeqOps> gZString;
 typedef ZObject<ZTFunction,CallOps> gZFunction;
 typedef ZObject<ZTList,SeqOps> gZList;
+typedef ZObject<ZObjP,CallOps> gZObject;
+typedef ZObject<ZTOInstance,CallOps> gZOInstance;
+typedef ZObject<ZTMemData,CallOps> gZMemData;
 
 // our varaint 
-typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction,gZList> ZTvar;
+typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction,gZList,gZObject,gZOInstance,gZMemData> ZTvar;
 typedef ZTvar* ZTvarp;
 typedef std::vector<ZTvarp> ZTvarS;
 
@@ -117,6 +124,8 @@ struct ZBuiltinModule
 #include "ZTString.h"
 #include "ZTFunction.h"
 #include "ZTList.h"
+#include "ZTObject.h"
+#include "ZTMemData.h"
 
 #include "ZTHelpers.h"
 #include "ZErrors.h"

@@ -1,7 +1,9 @@
 enum ZFunTypes
 {
 	ZExternal,
-	ZInternal
+	ZMExternal,
+	ZInternal,
+	ZMInternal
 };
 
 //generic ZFunction , either internal or external
@@ -9,6 +11,8 @@ struct ZIFunction
 {
 	ZFunTypes FunT;
 	int NumArgs;
+	ZTvarp obj;
+
 	union {
 		int NodeID;
 		ZTmfp pMFun;
@@ -19,7 +23,7 @@ struct ZIFunction
 	{FunT=ZExternal;NumArgs=narg;FunData.pFun=fp;}
 
 	void pMFunInit(int narg,ZTmfp fp)
-	{FunT=ZExternal;NumArgs=narg;FunData.pMFun=fp;}
+	{FunT=ZMExternal;NumArgs=narg;FunData.pMFun=fp;}
 
 	void NodeInit(int narg,int nid)
 	{FunT=ZInternal;NumArgs=narg;FunData.NodeID=nid;}
