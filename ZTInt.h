@@ -1,6 +1,8 @@
 class ZTInt : public ZTRoot
 {
 public:
+	typedef ZIInteger IType;
+
 	ZIInteger val;
 	
 	ZTInt(ZIInteger in)

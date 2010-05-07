@@ -186,3 +186,26 @@ namespace Boolean
 		BASE_CASE
 	};
 };
+
+namespace TypeConversion
+{
+	template<class T,class S>
+	inline
+	typename T::IType Convert(ZTvar val)
+	{
+		return boost::get< ZObject<T,S> >(val).cont->val;
+		//boost::bind( TypeConversion::Convert<ZTFloat,NumOps> , _1) asd;
+	}
+};
+
+#define INT_ZCONV(x)      TypeConversion::Convert<ZTInt,NumOps>(x)
+#define FLOAT_ZCONV(x)    TypeConversion::Convert<ZTFloat,NumOps>(x) 
+#define BOOL_ZCONV(x)     TypeConversion::Convert<ZTBool,NumOps>(x)
+#define STRING_ZCONV(x)   TypeConversion::Convert<ZTString,SeqOps>(x)
+#define FUNCTION_ZCONV(x) TypeConversion::Convert<ZTFunction,CallOps>(x)
+#define LIST_ZCONV(x)     TypeConversion::Convert<ZTList,SeqOps>(x)
+#define OBJECT_ZCONV(x)   TypeConversion::Convert<ZObjP,CallOps>(x)
+#define INSTANCE_ZCONV(x) TypeConversion::Convert<ZTOInstance,CallOps>(x)
+#define MEMDATA_ZCONV(x)  TypeConversion::Convert<ZTMemData,CallOps>(x)
+
+//typedef boost::bind( TypeConversion::Convert<ZTFloat,NumOps> , _1) FftCnv;

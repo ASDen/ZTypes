@@ -1,6 +1,8 @@
 class ZTBool : public ZTRoot
 {
 public:
+	typedef ZIBool IType ;
+
 	ZIBool val;
 	
 	ZTBool(ZIBool in)

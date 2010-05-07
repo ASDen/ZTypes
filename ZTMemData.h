@@ -3,6 +3,8 @@ typedef ZTvar ZMemFunGenClass::*ZMemD;
 class ZTMemData : public ZTRoot
 {
 public:
+	typedef ZMemD IType;
+
 	ZMemD val;
 
 	ZTMemData(ZMemD in)

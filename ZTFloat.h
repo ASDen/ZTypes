@@ -1,6 +1,8 @@
 class ZTFloat : public ZTRoot
 {
 public:
+	typedef ZIFloat IType;
+
 	ZIFloat val;
 
 	ZTFloat(ZIFloat in)

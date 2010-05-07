@@ -3,6 +3,7 @@ typedef ZSymbolTable<ZTvar> ZTvTable;
 class ZObjP : public ZTRoot
 {
 public:
+	typedef ZObjP* IType;
 
 	ZObjP* val;
 	ZTvTable DyProps;

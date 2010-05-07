@@ -35,6 +35,8 @@ typedef ZIFunction* pZIFunction;
 class ZTFunction : public ZTRoot
 {
 public:
+	typedef pZIFunction IType;
+
 	pZIFunction val;
 	
 	ZTFunction(pZIFunction in)

@@ -1,6 +1,8 @@
 class ZTList : public ZTRoot
 {
 public:
+	typedef ZTvarS IType;
+
 	ZTvarS val;
 
 	ZTList(ZTvarS in)

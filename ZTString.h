@@ -1,6 +1,8 @@
 class ZTString : public ZTRoot
 {
 public:
+	typedef ZIString IType;
+
 	ZIString val;
 
 	ZTString(ZIString in)
