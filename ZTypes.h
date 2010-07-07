@@ -1,12 +1,16 @@
 #ifndef _ZTYPES_H_
 #define _ZTYPES_H_
 
+#include <stdexcept>
 #include <sstream>
 #include <vector>
 #include "Zlang.h"
 #include <boost/variant.hpp>
 #include <boost/bind.hpp>
 #include <boost/lexical_cast.hpp>
+#include <Eigen/Geometry>
+
+USING_PART_OF_NAMESPACE_EIGEN
 
 //Operations types
 //
@@ -79,6 +83,7 @@ enum ZETypes
 	ZETString,
 	ZETFunction,
 	ZETList,
+	ZETMatrix,
 	ZETObject,
 	ZETInstance,
 	ZETMemDataItem
@@ -97,12 +102,13 @@ typedef ZObject<ZTBool,NumOps> gZBool;
 typedef ZObject<ZTString,SeqOps> gZString;
 typedef ZObject<ZTFunction,CallOps> gZFunction;
 typedef ZObject<ZTList,SeqOps> gZList;
+typedef ZObject<ZTMatrix,SeqOps> gZMatrix;
 typedef ZObject<ZObjP,CallOps> gZObject;
 typedef ZObject<ZTOInstance,CallOps> gZOInstance;
 typedef ZObject<ZTMemData,CallOps> gZMemData;
 
 // our varaint 
-typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction,gZList,gZObject,gZOInstance,gZMemData> ZTvar;
+typedef boost::variant<gZInt,gZFloat,gZBool,gZString,gZFunction,gZList,gZMatrix,gZObject,gZOInstance,gZMemData> ZTvar;
 typedef ZTvar* ZTvarp;
 typedef std::vector<ZTvarp> ZTvarS;
 
@@ -127,10 +133,11 @@ struct ZBuiltinModule
 #include "ZTObject.h"
 #include "ZTMemData.h"
 
+#include "ZTOperations.h"
 #include "ZTHelpers.h"
 #include "ZErrors.h"
 #include "ZTTraits.h"
-#include "ZTOperations.h"
 #include "ZTBridge.h"
+#include "ZTMatrix.h"
 
 #endif

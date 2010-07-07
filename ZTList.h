@@ -5,6 +5,7 @@ public:
 
 	ZTvarS val;
 
+
 	ZTList(ZTvarS in)
 	{
 		myType=ZETList;
@@ -46,6 +47,11 @@ public:
 	ZTvarp Get(int Index)
 	{
 		return val[Index];
+	}
+
+	int size()
+	{
+		return val.size();
 	}
 
 };

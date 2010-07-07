@@ -1,5 +1,9 @@
 typedef ZSymbolTable<ZTvar> ZTvTable;
 
+#define INST_TO_STR(x)  ZTvarp res=ZAlloc(ZTvar,1);\
+						*res=ZTString(x);\
+						return res;
+
 class ZObjP : public ZTRoot
 {
 public:
@@ -17,6 +21,11 @@ public:
 	ZTvTable getDyn()
 	{
 		return DyProps;
+	}
+
+	virtual ZTvarp toString(ZTvarS inp)
+	{
+		INST_TO_STR(ZIString(_ZC("Base Object")));
 	}
 
 	template<class T>
@@ -70,7 +79,6 @@ public:
 		/**(reinterpret_cast<T*>(A))=
 			*(reinterpret_cast<T*>(this));*/
 	}
-
 };
 
 template <class T> ZTvTable ZTBaseObject<T>::StProps;
@@ -108,9 +116,7 @@ public:
 
 	ZTvarp toString(ZTvarS inp)
 	{
-		ZTvarp res=ZAlloc(ZTvar,1);
-		*res=ZTString(ZIString(_ZC("Base Object")));
-		return res;
+		INST_TO_STR(ZIString(_ZC("Base Object")));
 	}
 
 	ZChar* Oname()
@@ -124,6 +130,7 @@ typedef ZObjP* pZObjP;
 class ZTOInstance : public ZTRoot
 {
 public:
+	typedef pZObjP IType;
 
 	pZObjP val;
 
@@ -143,6 +150,8 @@ public:
 	{
 		ZTOInstance();
 	}
+
+
 
 	ZChar* Oname()
 	{

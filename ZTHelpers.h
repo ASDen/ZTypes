@@ -66,6 +66,17 @@ public:
 			return _ZC("True");
 		return _ZC("False");
 	}
+	
+	template< template <typename,typename> class T >
+	ZChar* operator()(T<ZTOInstance,CallOps> &a) const
+	{
+		ZTvarS zs;
+		ZIString zx = STRING_ZCONV(*(a.cont->val->toString(zs)));
+		ZChar* zt=ZAlloc(ZChar, zx.length());
+		zcstrcpy(zt,zx.c_str());
+		return zt;
+	}
+	
 };
 
 class BoolVal : public boost::static_visitor<ZIBool>

@@ -5,6 +5,7 @@ class ZTFloat;
 class ZTString;
 class ZTFunction;
 class ZTList;
+class ZTMatrix;
 class ZObjP;
 class ZTOInstance;
 class ZTMemData;

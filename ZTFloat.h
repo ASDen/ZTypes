@@ -26,9 +26,9 @@ public:
 		return _ZC("Float");
 	}
 
-	ZTvar Square(ZTvarS inp)
+	/*ZTvar Square(ZTvarS inp)
 	{
-		return ZTFloat(val * boost::get<gZFloat>(*(inp[0])).cont->val);
-	}
+		return ZTFloat(val * FLOAT_ZCONV(*(inp[0])));
+	}*/
 
 };

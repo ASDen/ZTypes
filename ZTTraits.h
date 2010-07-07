@@ -62,8 +62,16 @@ class MultiplyResultTrait : public ResultTrait<T1,T2>
 {};
 
 template<class T1,class T2>
+class ModulusResultTrait   : public ResultTrait<T1,T2>
+{
+public:
+	typedef ZTInt RsT;
+};
+
+template<class T1,class T2>
 class DivideResultTrait   : public ResultTrait<T1,T2>
 {};
+
 
 template<>
 class DivideResultTrait<ZTInt,ZTInt>
